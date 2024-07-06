@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfy.dao.CommitMapper">
+    <insert id="addCommit">
+        insert into `commit` (UserID,ExhibitionID,CommitContent,Rating,CommitTime)
+        values (#{userId},#{exhibitionId},#{commitContent},#{rating},#{commitTime})
+    </insert>
+
+    <select id="getAllCommit" resultType="com.jfy.domain.Commit">
+        select * from `commit`
+    </select>
+
+<!--    <select id="getCommitByUserId" resultType="com.jfy.domain.Commit">-->
+<!--        select * from `commit` where UserID=#{userId}-->
+<!--    </select>-->
+    <select id="getCommitByUserId" resultType="com.jfy.domain.Commit">
+        select * from `commit`
+        join `exhibition` on `commit`.ExhibitionID=`exhibition`.ExhibitionID
+        where UserID=#{userId}
+
+    </select>
+
+    <select id="getCommitById" resultType="com.jfy.domain.Commit">
+        select * from `commit` where CommitID=#{commitId}
+    </select>
+
+    <select id="getCommitByExhibitionId" resultType="com.jfy.domain.Commit">
+        select * from `commit` where ExhibitionID=#{exhibitionId}
+    </select>
+
+    <update id="updateCommitById">
+        update `commit` set CommitContent=#{commitContent},Rating=#{rating},CommitTime=#{commitTime}
+        where CommitID=#{commitId}
+    </update>
+
+    <delete id="deleteCommitById">
+        delete from `commit` where CommitID=#{commitId}
+    </delete>
+</mapper>

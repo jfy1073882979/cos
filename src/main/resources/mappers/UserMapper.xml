@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jfy.dao.UserMapper">
+    <resultMap id="User-Order" type="com.jfy.domain.User">
+        <id property="userId" column="UserID" />
+        <result property="username" column="Username" />
+        <result property="password" column="Password" />
+        <result property="balance" column="Balance" />
+        <result property="rid" column="Rid" />
+        <result property="avatar" column="Avatar" />
+        <result property="phoneNumber" column="PhoneNumber" />
+        <collection property="orderList" ofType="com.jfy.domain.Order">
+            <id property="orderId" column="OrderID" />
+            <result property="userId" column="UserID" />
+            <result property="ticketId" column="TicketID" />
+            <result property="ticketName" column="TicketName" />
+            <result property="ticketPrice" column="Price" />
+            <result property="ticketQuantity" column="TicketQuantity" />
+            <result property="orderTime" column="OrderTime" />
+        </collection>
+    </resultMap>
+
+    <select id="getAllOrderByUserId" resultMap="User-Order">
+        SELECT `Order`.OrderID, `Order`.TicketID, Price, Ticket.TicketName, `Order`.TicketQuantity, `Order`.OrderTime
+        FROM User
+                 LEFT JOIN `Order` ON User.UserID = `Order`.UserID
+                 LEFT JOIN Ticket ON `Order`.TicketID = Ticket.TicketID
+        WHERE User.UserID = #{userID}
+    </select>
+    <select id="getAllUser" resultType="com.jfy.domain.User">
+        select * from user
+    </select>
+    
+    <select id="getUserById" resultType="com.jfy.domain.User">
+        select * from user where UserID = #{userId}
+    </select>
+
+    <select id="checkUserName"  resultType="com.jfy.domain.User">
+        select * from user where UserName = #{username}
+    </select>
+
+    <select id="checkPhone"  resultType="com.jfy.domain.User">
+        select * from user where PhoneNumber = #{phoneNumber}
+    </select>
+
+    <insert id="addUser" parameterType="com.jfy.domain.User">
+        insert into user(UserName, Password, PhoneNumber)
+        values(#{username}, #{password}, #{phoneNumber})
+    </insert>
+
+    <update id="updateUser" parameterType="com.jfy.domain.User">
+        update user set UserName = #{username}, PhoneNumber = #{phoneNumber}
+        where UserID = #{userId}
+    </update>
+
+    <update id="updatePassword" parameterType="com.jfy.domain.User">
+        update user set Password = #{password}
+        where UserID = #{userId}
+    </update>
+
+
+    <update id="updateAvatar" >
+        UPDATE user
+        SET avatar = #{path}
+        WHERE UserID = #{userId}
+    </update>
+
+    <update id="updateBalance" parameterType="com.jfy.domain.User">
+        update user set Balance = #{balance}
+        where UserID = #{userId}
+    </update>
+    <delete id="deleteUserById">
+        delete from user where UserID = #{userId}
+    </delete>
+    <update id="adminUpdateUser" parameterType="com.jfy.domain.User">
+        update user set UserName = #{username},Balance=#{balance}, PhoneNumber = #{phoneNumber}, Rid = #{rid}
+        where UserID = #{userId}
+    </update>
+
+</mapper>

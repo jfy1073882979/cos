@@ -1,0 +1,55 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+}
+body {
+    background-color: #ffe6ea; /* 浅粉色背景 */
+    border: 1px #ddd solid;
+}
+#sidebar h3 {
+    height: 40px;
+    border-bottom: 1px #999 dotted;
+    cursor: pointer;
+    background: #f8f8f8;
+    color: #2B7DBC;
+}
+#sidebar h3 span {
+    position: relative;
+    top: 10px;
+    left: 30px;
+}
+#sidebar ul {
+    display: block; /* 显示菜单 */
+}
+#sidebar ul li {
+    height: 40px;
+    border-bottom: 1px #999 dotted;
+    cursor: pointer;
+    list-style: none;
+}
+#sidebar ul li a {
+    position: relative;
+    top: 10px;
+    left: 40px;
+    border-left: 1px #999 dotted;
+}
+#sidebar ul li a:visited,
+#sidebar ul li a:link {
+    text-decoration: none;
+    color: #616161;
+}
+#sidebar ul li a:hover {
+    text-decoration: underline;
+    color: #222;
+    font-weight: bold;
+    border-left: 1px #999 dotted;
+}
+#sidebar ul li:hover {
+    background: #e8e8e8;
+}
+.h1 {
+    background: url("https://img.icons8.com/ios-glyphs/30/000000/user--v1.png") 0 0 no-repeat #e8e8e8; /* 使用图标代替图片 */
+    background-position: 5px 9px;
+}
+

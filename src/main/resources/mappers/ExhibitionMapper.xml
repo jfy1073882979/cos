@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfy.dao.ExhibitionMapper">
+    <select id="getAllExhibition" resultType="com.jfy.domain.Exhibition">
+        select * from exhibition
+    </select>
+
+    <select id="getExhibitionById" resultType="com.jfy.domain.Exhibition">
+        select * from exhibition where ExhibitionID = #{ExhibitionId}
+    </select>
+
+    <update id="updateExhibitionRating">
+        update exhibition set Rating=#{rating} where ExhibitionID=#{exhibitionId}
+    </update>
+
+    <select id="searchExhibitions" resultType="com.jfy.domain.Exhibition">
+        select * from exhibition where ExhibitionName like CONCAT('%',#{exhibitionName},'%')
+    </select>
+
+    <insert id="addExhibition" useGeneratedKeys="true" keyProperty="exhibitionId">
+        insert into exhibition(ExhibitionName,ReleaseTime,Content)
+        values(#{exhibitionName},#{releaseTime},#{content})
+    </insert>
+    <delete id="deleteExhibitionById">
+        delete from exhibition where ExhibitionID=#{exhibitionId}
+    </delete>
+    <update id="updateExhibitionInfo">
+        update exhibition set ExhibitionName=#{exhibitionName},ReleaseTime=#{releaseTime},Content=#{content}
+        where ExhibitionID=#{exhibitionId}
+    </update>
+    <update id="updateExhibitionPic">
+        update exhibition set ExhibitionPic=#{cover}
+        where ExhibitionID=#{exhibitionId}
+    </update>
+
+
+</mapper>

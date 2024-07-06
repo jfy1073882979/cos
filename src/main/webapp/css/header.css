@@ -1,0 +1,121 @@
+#header {
+    /*height: 60px; !* 你可以修改这个值来改变导航栏的高度 *!*/
+    /*overflow: hidden; !* 防止内容溢出 *!*/
+    background-color: #3498db;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+#title {
+    margin-left: 10px;
+    margin-right: auto;
+    font-size: 24px;
+    color: #fff;
+    order: 1;
+}
+
+#logo, #title, #search-bar {
+    display: flex;
+    align-items: center;
+}
+/*#logo,*/
+/*#search-bar,*/
+/*#user-info {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*}*/
+
+#user-info a {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+#user-info a:hover {
+    color: #f39c12;
+}
+
+#user-info .cart-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('cart.png');
+    background-size: cover;
+    margin-right: 5px;
+}
+
+#search-bar input[type="text"] {
+    border: none;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+#search-bar button {
+    border: none;
+    padding: 5px 10px;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#search-bar button:hover {
+    background-color: #f39c12;
+}
+
+#search-bar {
+    order: 2;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#user-info {
+    order: 3;
+}
+
+#user-info img {
+    margin-right: 10px;
+}
+
+#user-info a {
+    margin-right: 10px;
+}
+
+#user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+#dropdown-content {
+
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+#dropdown-content a {
+    color: #000;
+    /* 设置字体颜色为黑色 */
+    display: block;
+    /* 设置链接为块级元素，使其占一行 */
+    text-decoration: none;
+    /* 移除链接的下划线 */
+}
+
+#dropdown-content a:hover {
+    background-color: #ddd;
+    /* 设置鼠标悬停时的背景颜色 */
+}
+
+#user-dropdown:hover #dropdown-content {
+    display: block;
+}
+

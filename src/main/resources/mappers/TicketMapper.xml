@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfy.dao.TicketMapper">
+    <select id="getTicketById" resultType="com.jfy.domain.Ticket">
+        select * from ticket where TicketID = #{ticketId}
+    </select>
+
+<!--    <select id="getTicketByExhId" resultType="com.jfy.domain.Ticket">-->
+<!--        select * from ticket where ExhibitionID = #{exhibitionId}-->
+<!--    </select>-->
+    <select id="getTicketByExhId" resultType="com.jfy.domain.Ticket">
+        select * from ticket where ExhibitionID = #{exhibitionId}
+    </select>
+
+    <update id="updateTicketQuantity">
+        update ticket set RemainingQuantity = #{remainingQuantity}
+        where TicketID = #{ticketId}
+    </update>
+
+    <select id="getAllTicket" resultType="com.jfy.domain.Ticket">
+        select * from ticket
+    </select>
+
+    <insert id="addTicket" parameterType="com.jfy.domain.Ticket">
+        insert into ticket ( ExhibitionID, TicketName, Price, TotalQuantity, RemainingQuantity)
+        values (#{exhibitionId}, #{ticketName}, #{price}, #{totalQuantity}, #{remainingQuantity})
+    </insert>
+
+    <delete id="deleteTicketById">
+        delete from ticket where TicketID = #{ticketId}
+    </delete>
+
+    <update id="updateTicketInfo" parameterType="com.jfy.domain.Ticket">
+        update ticket set ExhibitionID = #{exhibitionId}, TicketName = #{ticketName}, Price = #{price}, TotalQuantity = #{totalQuantity}, RemainingQuantity = #{remainingQuantity}
+        where TicketID = #{ticketId}
+    </update>
+
+
+</mapper>
